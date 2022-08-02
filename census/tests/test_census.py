@@ -129,7 +129,7 @@ class TestEndpoints(CensusTestCase):
 
         for method_name, expected in tests:
 
-            msg = '{}.{}'.format(client_name, method_name)
+            msg = f'{client_name}.{method_name}'
 
             method = getattr(client, method_name)
             data = method(fields, **TEST_DATA)
@@ -273,7 +273,7 @@ class TestEndpoints(CensusTestCase):
         # GEO_ID is grabbed in the first chunk (request), but the state and county are overwritten
         # with each chunk and have the values from the last chunk
         assert results[0]['GEO_ID'][-5:] == results[0]['state'] + \
-            results[0]['county']
+                results[0]['county']
 
     def test_new_style_endpoints(self):
         client = Census(KEY, year=2016)
